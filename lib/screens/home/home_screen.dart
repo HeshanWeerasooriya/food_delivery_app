@@ -8,8 +8,8 @@ class HomeScreen extends StatelessWidget {
 
   static Route route() {
     return MaterialPageRoute(
-      builder: (_) => HomeScreen(),
-      settings: RouteSettings(name: routeName),
+      builder: (_) => const HomeScreen(),
+      settings: const RouteSettings(name: routeName),
     );
   }
 
@@ -17,15 +17,24 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text('Home'),
-        ),
+        title: const Text('Home'),
       ),
-      body: ElevatedButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/location');
-        },
-        child: Text('Location Screen'),
+      body: Center(
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: Theme.of(context).primaryColor,
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, '/location');
+          },
+          child: Text(
+            'Location Screen',
+            style: Theme.of(context)
+                .textTheme
+                .headline2!
+                .copyWith(color: Colors.white),
+          ),
+        ),
       ),
     );
   }
